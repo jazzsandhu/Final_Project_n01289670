@@ -20,7 +20,7 @@ namespace Content_Management_System
         {
             page_result.InnerHtml = "";
             string query2 = "Select * from HTTP_PAGE";
-            string query = "select PAGE_ID,AUTHOR_NUMBER, TITLE, BODY, concat(first_name,' ',last_name) as AUTHOR_NAME, CREATED_DATE from HTTP_PAGE join AUTHOR ON HTTP_PAGE.AUTHOR_ID = AUTHOR.AUTHOR_ID";
+            string query = "select PAGE_ID, TITLE, BODY, concat(first_name,' ',last_name) as AUTHOR_NAME, CREATED_DATE from HTTP_PAGE join AUTHOR ON HTTP_PAGE.AUTHOR_ID = AUTHOR.AUTHOR_ID";
             string searchkey = search_box.Text;
             if(searchkey != "")
             {
@@ -36,7 +36,6 @@ namespace Content_Management_System
 
 
                 string pageid = row["PAGE_ID"];
-                string authornumber = row["AUTHOR_NUMBER"];
                 string pageTitle = row["TITLE"];
                 page_result.InnerHtml += "<div class=\"col5\"><a href=\"Details_of_page.aspx?pageid=" + pageid + "\">" + pageTitle + "</a></div>";
 

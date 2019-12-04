@@ -88,7 +88,7 @@ namespace Content_Management_System
 
         public void AddPage(Page_Class new_http_page)
         {
-            string query = "insert into HTTP_PAGE(TITLE,BODY,AUTHOR_NUMBER,CREATED_DATE) VALUES ('{0}','{1}','{2}','{3}')";
+            string query = "insert into HTTP_PAGE(TITLE,BODY,AUTHOR_ID,CREATED_DATE) VALUES ('{0}','{1}','{2}','{3}')";
             //UPPER STRING FOR QUERY AND VALUES IN CURLY BRACES TO REFER THESE VALUES;
             query = String.Format(query, new_http_page.GetTitle(), new_http_page.GetBody(),new_http_page.GetAuthorNumber(), new_http_page.GetCreatedDate().ToString("yyyy/mm/dd"));
 
@@ -114,7 +114,7 @@ namespace Content_Management_System
 
         //here because we define the class thats why we mention here
         //otherwise we have to use dictionary method.
-        public Page_Class FindPage(int id)
+        public Page_Class FindPage(int pageid)
         {
             MySqlConnection Connect = new MySqlConnection(ConnectionString);
 
@@ -122,8 +122,8 @@ namespace Content_Management_System
 
             try
             {
-                string query = "select PAGE_ID, AUTHOR_NUMBER, TITLE, BODY, concat(first_name, ' ', last_name) as AUTHOR_NAME, CREATED_DATE from HTTP_PAGE join AUTHOR ON HTTP_PAGE.AUTHOR_ID = AUTHOR.AUTHOR_ID where PAGE_ID =" + id;
-                Debug.WriteLine("connection initialized!!! i am trying to find a page with id "+id);
+                string query = "select PAGE_ID,TITLE, BODY, concat(first_name, ' ', last_name) as AUTHOR_NAME, CREATED_DATE from HTTP_PAGE join AUTHOR ON HTTP_PAGE.AUTHOR_ID = AUTHOR.AUTHOR_ID where PAGE_ID =" + pageid;
+                Debug.WriteLine("connection initialized!!! i am trying to find a page with id "+ pageid);
 
                 Connect.Open();
 
@@ -184,8 +184,8 @@ namespace Content_Management_System
         }
         public void UpdatePage(int pageid, Page_Class new_page)
         {
-            string query = "update HTTP_PAGE set TITLE='{0}', BODY='{1}', AUTHOR_NUMBER='{2}' WHERE PAGE_ID='{3}'";
-            query = String.Format(query, new_page.GetTitle(), new_page.GetBody(), new_page.GetAuthorNumber(), pageid);
+            string query = "update HTTP_PAGE set TITLE='{0}', BODY='{1}',AUTHOR_ID='{2}' WHERE PAGE_ID='{3}' ";
+            query = String.Format(query, new_page.GetTitle(), new_page.GetBody(),new_page.GetAuthorNumber(), pageid);
 
             MySqlConnection Connect = new MySqlConnection(ConnectionString);
             MySqlCommand cmd = new MySqlCommand(query, Connect);
