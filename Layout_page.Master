@@ -1,0 +1,39 @@
+﻿<%@ Master Language="C#" AutoEventWireup="true" CodeBehind="Layout_page.master.cs" Inherits="Content_Management_System.Layout_page" %>
+<%@ Register src="~/NavClass.ascx" TagName="NavClass" TagPrefix="asp" %>
+<!DOCTYPE html>
+
+<html>
+<head runat="server">
+    <title></title>
+    <asp:ContentPlaceHolder ID="head" runat="server">
+    </asp:ContentPlaceHolder>
+    <link rel="stylesheet" type="text/css" href="StyleSheet.css" /> 
+</head>
+<body>
+    <form id="form1" runat="server">
+    <header class="same">
+        <div class="head">
+            Gribble
+        </div>
+        <div id="head2">
+            <a href="HTTP_Page.aspx">Home</a>
+        </div>
+         <nav id="nav_list">
+            <asp:NavClass  runat="server"></asp:NavClass>
+        </nav>        
+    </header>
+       
+        <div>
+            <asp:ContentPlaceHolder ID="body" runat="server">
+            </asp:ContentPlaceHolder>
+        </div>
+    <footer class="same" id="footer">
+        <div id="author">
+            &copy;2019,SkySpace<br />
+            Jashanpreet kaur
+        </div>
+       
+    </footer>
+         </form>
+</body>
+</html>
